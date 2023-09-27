@@ -112,6 +112,7 @@ public class ExecuteCheckPasswordController {
                             smsBody = smsBody.replace("#customerno", customerNo);
                             common.sendSMS(phone, smsBody, smsApiUrl);
                             Thread.sleep(1000);
+
                         } catch (Exception e) {
                             common.logErrors("dssrecordschecker", "CustomerController", "checkPassword", "Send OTP SMS to customer - After Record Checking", e.toString());
                         }
