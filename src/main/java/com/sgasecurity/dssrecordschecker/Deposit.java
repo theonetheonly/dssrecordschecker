@@ -17,8 +17,6 @@ public class Deposit {
     private String systemCustomerNo;
     @Column(name = "dpo_to_omni_transactional_no")
     private String dpoToOmniTransactionalNo;
-    @Column(name = "invoice_ref_no")
-    private String invoiceRefNo;
     @Column(name = "job_no")
     private String jobNo;
     @Column(name = "installation_id")
@@ -37,12 +35,11 @@ public class Deposit {
     public Deposit() {
     }
 
-    public Deposit(long id, double amount, String systemCustomerNo, String dpoToOmniTransactionalNo, String invoiceRefNo, String jobNo, long installationId, int packageTypeId, LocalDate datePaid, String narrative, String status, Timestamp timestamp) {
+    public Deposit(long id, double amount, String systemCustomerNo, String dpoToOmniTransactionalNo, String jobNo, long installationId, int packageTypeId, LocalDate datePaid, String narrative, String status, Timestamp timestamp) {
         this.id = id;
         this.amount = amount;
         this.systemCustomerNo = systemCustomerNo;
         this.dpoToOmniTransactionalNo = dpoToOmniTransactionalNo;
-        this.invoiceRefNo = invoiceRefNo;
         this.jobNo = jobNo;
         this.installationId = installationId;
         this.packageTypeId = packageTypeId;
@@ -89,12 +86,6 @@ public class Deposit {
     }
     public void setDpoToOmniTransactionalNo(String dpoToOmniTransactionalNo) {
         this.dpoToOmniTransactionalNo = dpoToOmniTransactionalNo;
-    }
-    public String getInvoiceRefNo() {
-        return invoiceRefNo;
-    }
-    public void setInvoiceRefNo(String invoiceRefNo) {
-        this.invoiceRefNo = invoiceRefNo;
     }
     public String getJobNo() {
         return jobNo;
