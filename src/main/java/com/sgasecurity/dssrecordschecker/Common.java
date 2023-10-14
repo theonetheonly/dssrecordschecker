@@ -185,24 +185,4 @@ public class Common {
 
         return accessToken;
     }
-
-    public Map<String, String> generatePassword() {
-        Map<String, String> map = new HashMap<>();
-
-        try {
-            Random random = new Random();
-            int randomNumber = 1000 + random.nextInt(9000);
-            String password = String.valueOf(randomNumber);
-            String salt = BCrypt.gensalt();
-            String hashedPassword = BCrypt.hashpw(password, salt);
-            map.put("password", password);
-            map.put("hashedPassword", hashedPassword);
-            map.put("status", "SUCCESS");
-            return map;
-        } catch (Exception e){
-            logErrors("dssv6", "Common", "generateHashedPassword", "Generate Hashed Password", e.toString());
-            map.put("status", "FAIL: " + e.toString());
-            return map;
-        }
-    }
 }

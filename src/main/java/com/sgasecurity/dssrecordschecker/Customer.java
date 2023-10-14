@@ -72,12 +72,6 @@ public class Customer {
     private String customerStatus;
     @Column(name = "rescue_member_id")
     private String rescueMemberId;
-    @Column(name = "password")
-    private String password;
-    @Column(name = "otp")
-    private String otp;
-    @Column(name = "is_first_login")
-    private String isFirstLogin;
     @Column(name = "kra_cert_file")
     private String kraCertFile;
     @Column(name = "id_passport_file")
@@ -88,7 +82,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int id, String systemCustomerNo, String sessionNo, String firstName, String lastName, String phone, String email, String primaryContact, String postalAddress, String houseDoorNo, String houseOwning, String locality, String identificationType, String kraPin, String idPassport, String occupation, String estateName, String roadStreet, String townCity, String postalCode, String homeType, int householdNumber, String terms, String sgaTermsStatus, String sanlamTermsStatus, String rescueTermsStatus, String signUpStage, String signUpStatus, String accountStatus, String rescueMemberCreationResponse, String customerStatus, String rescueMemberId, String password, String otp, String isFirstLogin, String kraCertFile, String idPassportFile, Timestamp timestamp) {
+    public Customer(int id, String systemCustomerNo, String sessionNo, String firstName, String lastName, String phone, String email, String primaryContact, String postalAddress, String houseDoorNo, String houseOwning, String locality, String identificationType, String kraPin, String idPassport, String occupation, String estateName, String roadStreet, String townCity, String postalCode, String homeType, int householdNumber, String terms, String sgaTermsStatus, String sanlamTermsStatus, String rescueTermsStatus, String signUpStage, String signUpStatus, String accountStatus, String rescueMemberCreationResponse, String customerStatus, String rescueMemberId, String kraCertFile, String idPassportFile, Timestamp timestamp) {
         this.id = id;
         this.systemCustomerNo = systemCustomerNo;
         this.sessionNo = sessionNo;
@@ -121,9 +115,6 @@ public class Customer {
         this.rescueMemberCreationResponse = rescueMemberCreationResponse;
         this.customerStatus = customerStatus;
         this.rescueMemberId = rescueMemberId;
-        this.password = password;
-        this.otp = otp;
-        this.isFirstLogin = isFirstLogin;
         this.kraCertFile = kraCertFile;
         this.idPassportFile = idPassportFile;
         this.timestamp = timestamp;
@@ -379,32 +370,6 @@ public class Customer {
     {
         this.rescueMemberId = rescueMemberId;
     }
-
-    public String getPassword()
-    {
-        return password;
-    }
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
-    public String getOTP()
-    {
-        return otp;
-    }
-    public void setOTP(String otp)
-    {
-        this.otp = otp;
-    }
-    public String getIsFirstLogin()
-    {
-        return isFirstLogin;
-    }
-    public void setIsFirstLogin(String isFirstLogin)
-    {
-        this.isFirstLogin = isFirstLogin;
-    }
-
     public String getKraCertFile()
     {
         return kraCertFile;

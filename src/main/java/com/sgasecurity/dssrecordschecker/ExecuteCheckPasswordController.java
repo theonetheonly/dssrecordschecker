@@ -1,5 +1,6 @@
 package com.sgasecurity.dssrecordschecker;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,8 @@ public class ExecuteCheckPasswordController {
     String emailApiUrl = null;
     String bitlyToken = null;
     String bitlyUrl = null;
+    @Autowired
+    AuthDataService authDataService;
 
 
     @CrossOrigin
@@ -51,20 +54,25 @@ public class ExecuteCheckPasswordController {
 
         if (customerList.size() > 0) {
             for (Customer customer: customerList) {
-                if(customer.getPassword() == null || customer.getPassword() == "" || customer.getPassword().length() < 1){
+                AuthData authData = authDataService.getAuthDataBySystemCustomerNo(customer.getSystemCustomerNo());
+                if(authData.getPassword() == null || authData.getPassword() == "" || authData.getPassword().isEmpty()){
+
                     try {
-                        Map<String, String> map = common.generatePassword();
-                        String otp = map.get("password");
-                        String hashedPassword = map.get("hashedPassword");
+                        Random random = new Random();
+                        int randomNumber = 1000 + random.nextInt(9000);
+                        String otp = String.valueOf(randomNumber);
+                        String salt = BCrypt.gensalt();
+                        String hashedPassword = BCrypt.hashpw(otp, salt);
+
                         String customerNo = customer.getSystemCustomerNo();
                         String email = customer.getEmail();
                         String fullName = customer.getFirstName() + " " + customer.getLastName();
                         String phone = customer.getPhone();
                         String customerPortalUrl = null;
 
-                        customer.setPassword(hashedPassword);
-                        customer.setOTP(otp);
-                        customerService.saveCustomer(customer);
+                        authData.setPassword(hashedPassword);
+                        authData.setOtp(otp);
+                        authDataService.saveAuthData(authData);
 
                         try {
 //                          2. Send OTP email to customer
